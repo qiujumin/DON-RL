@@ -11,9 +11,7 @@ model.save("data/ppo_carracing")
 del model
 
 model = PPO.load("data/ppo_carracing", env=env)
-
-mean_reward, std_reward = evaluate_policy(
-    model, model.get_env(), n_eval_episodes=10)
+mean_reward, std_reward = evaluate_policy(model, model.get_env(), n_eval_episodes=10)
 
 vec_env = model.get_env()
 obs = vec_env.reset()

@@ -28,16 +28,16 @@ layer3 = 2*np.pi*(1-transform(Image.open("data/layer3.png")).squeeze().to(device
 model = DON(layer1, layer2, layer3).to(device)
 
 env = gym.make("CarRacing-v0")
-env.reset()
+state = env.reset()
 
 for step in range(30):
     env.step([0, 0.4, 0])
     env.render()
 
-for step in range(1200):
+for step in range(1000):
     # img = Image.fromarray(env.state).filter(ImageFilter.GaussianBlur(radius=10))
     # img = Image.fromarray(gaussian_noise(env.state, mean=-0.02, var=0.02))
-    img = Image.fromarray(env.state)
+    img = Image.fromarray(state)
     input = transform(transforms.Resize((Ny, Nx))(img)).squeeze().to(device)
     output = model(input)
 
@@ -51,7 +51,7 @@ for step in range(1200):
     else:
         steering = 0
 
-    env.step([steering, 0.01, 0])
+    state, reward, done, info = env.step([steering, 0.01, 0])
     env.render()
 
 env.close()
