@@ -9,9 +9,9 @@ Figure 1: Framework of our proposed method.
 
 ## Usage
 
-1. Run policy.py to obtain the policy model.
-2. Run train.py to train the diffractive optical network.
-3. Run run.py to load the trained network to play the game.
+1. Run 'policy.py' to obtain the policy model.
+2. Run 'train.py' to train the diffractive optical network.
+3. Run 'run.py' to load the trained network to play the game.
 
 ## Citation
 
