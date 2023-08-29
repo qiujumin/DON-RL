@@ -96,16 +96,3 @@ class TicTacToe(gym.Env):
 
     def is_board_full(self):
         return np.all(self.board != 0)
-    
-
-# env = TicTacToe(1)
-# observation = env.reset()
-# done = False
-
-# while not done:
-#     env.render()
-#     action = int(input("Enter your action (0-8): "))
-#     observation, reward, done, _ = env.step(action)
-#     print("Reward:", reward)
-
-# env.render()
