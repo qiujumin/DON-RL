@@ -5,7 +5,7 @@ The ultimate goal of artificial intelligence is to mimic the human brain to perf
 
 ### Usage
 
-Run policy.py to obtain the policy model.
-Run train.py to train the diffractive optical network.
-Run run.py to load the trained network to play the game.
+1.Run policy.py to obtain the policy model.
+2.Run train.py to train the diffractive optical network.
+3.Run run.py to load the trained network to play the game.
 
