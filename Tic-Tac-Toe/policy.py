@@ -1,9 +1,9 @@
-import gym
+from tic_tac_toe import *
 
 from stable_baselines3 import PPO
 from stable_baselines3.common.evaluation import evaluate_policy
 
-env = gym.make('TicTacToe_v0')
+env = TicTacToe(1)
 
 model = PPO("CnnPolicy", env, verbose=1)
 model.learn(total_timesteps=int(2e5), progress_bar=True) 
