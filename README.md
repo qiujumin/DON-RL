@@ -16,10 +16,10 @@ Figure 1: Framework of our proposed method.
 ## Citation
 
 ```
-@misc{qiu2022decisionmaking,
-      title={Decision-making and control with metasurface-based diffractive neural networks}, 
-      author={Jumin Qiu and Tianbao Yu and Lujun Huang and Andrey Miroshnichenko and Shuyuan Xiao},
-      year={2022},
+@misc{qiu2023decisionmaking,
+      title={Decision-making and control with diffractive optical networks}, 
+      author={Jumin Qiu and Shuyuan Xiao and Lujun Huang and Andrey Miroshnichenko and Dejian Zhang and Tingting Liu and Tianbao Yu},
+      year={2023},
       eprint={2212.11278},
       archivePrefix={arXiv},
       primaryClass={cs.LG}
