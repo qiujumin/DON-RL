@@ -8,6 +8,7 @@ transform = transforms.Compose([transforms.Grayscale(), transforms.ToTensor()])
 
 layer = [torch.from_numpy(np.loadtxt(f"data/layer{i}.csv", delimiter=",")).to(device) for i in range(3)]
 model = DON(layer).to(device)
+
 env = TicTacToe(1)
 state = env.reset()
 
