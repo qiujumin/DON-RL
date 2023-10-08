@@ -5,9 +5,7 @@ import matplotlib.pyplot as plt
 from stable_baselines3 import PPO
 from torchvision import transforms
 
-layer1 = nn.Parameter(torch.normal(0, 1, size=(Ny, Nx)))
-layer2 = nn.Parameter(torch.normal(0, 1, size=(Ny, Nx)))
-layer3 = nn.Parameter(torch.normal(0, 1, size=(Ny, Nx)))
+layer = nn.ParameterList(nn.Parameter(torch.normal(0, 1, size=(Ny, Nx))) for i in range(3))
 
 model = DON(layer1, layer2, layer3).to(device)
 criterion = torch.nn.MSELoss(reduction="sum")
@@ -58,4 +56,4 @@ for step in range(1000):
             phase = np.where(phase > np.pi, phase - 2 * np.pi, phase)
             phase = np.where(phase < -np.pi, phase + 2 * np.pi, phase)
 
-            plt.imsave(f"data/layer{_+1}.png", phase, cmap="gray_r")
+            np.savetxt(f"data/phase{i}.csv", phase, delimiter=",")
