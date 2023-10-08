@@ -7,9 +7,6 @@ import matplotlib.pyplot as plt
 from stable_baselines3 import PPO
 from torchvision import transforms
 
-layer1 = nn.Parameter(torch.normal(0, 1, size=(Ny, Nx)))
-layer2 = nn.Parameter(torch.normal(0, 1, size=(Ny, Nx)))
-layer3 = nn.Parameter(torch.normal(0, 1, size=(Ny, Nx)))
 
 layer = nn.ParameterList(nn.Parameter(torch.normal(0, 1, size=(Ny, Nx))) for i in range(3))
 
