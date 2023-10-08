@@ -65,7 +65,7 @@ class MonochromaticField:
 
 
 class DON(nn.Module):
-    def __init__(self, layer1, layer2, layer3):
+    def __init__(self, layer):
         super(DON, self).__init__()
         self.layer = layer
 
