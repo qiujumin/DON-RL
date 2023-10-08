@@ -22,10 +22,8 @@ def gaussian_noise(img, mean, var):
 
 transform = transforms.Compose([transforms.Grayscale(), transforms.ToTensor()])
 
-layer1 = 2*np.pi*(1-transform(Image.open("data/layer1.png")).squeeze().to(device))
-layer2 = 2*np.pi*(1-transform(Image.open("data/layer2.png")).squeeze().to(device))
-layer3 = 2*np.pi*(1-transform(Image.open("data/layer3.png")).squeeze().to(device))
-model = DON(layer1, layer2, layer3).to(device)
+layer = [torch.from_numpy(np.loadtxt(f"data/layer{i}.csv", delimiter=",")).to(device) for i in range(3)]
+model = DON(layer).to(device)
 
 env = gym.make("CarRacing-v0")
 state = env.reset()
