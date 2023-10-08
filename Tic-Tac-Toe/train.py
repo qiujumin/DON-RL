@@ -7,7 +7,7 @@ from torchvision import transforms
 
 layer = nn.ParameterList(nn.Parameter(torch.normal(0, 1, size=(Ny, Nx))) for i in range(3))
 
-model = DON(layer1, layer2, layer3).to(device)
+model = DON(layer).to(device)
 criterion = torch.nn.MSELoss(reduction="sum")
 optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 
