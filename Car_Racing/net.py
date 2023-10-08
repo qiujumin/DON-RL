@@ -67,16 +67,14 @@ class MonochromaticField:
 class DON(nn.Module):
     def __init__(self, layer1, layer2, layer3):
         super(DON, self).__init__()
-        self.layer1 = layer1
-        self.layer2 = layer2
-        self.layer3 = layer3
+        self.layer = layer
 
     def forward(self, x):
         F = MonochromaticField(wavelength, extent_x, extent_y, Nx, Ny)
         F.set_source_amplitude(x)
         F.propagate(z)
         res = F.get_intensity()
-        F.diffractive_layer(self.layer1)
+        F.diffractive_layer(self.layer[0])
         F.propagate(z)
         I = F.get_intensity()
         x = 0.5*res + 0.5*I
@@ -84,7 +82,7 @@ class DON(nn.Module):
         F.set_source_amplitude(x)
         F.propagate(z)
         res = F.get_intensity()
-        F.diffractive_layer(self.layer2)
+        F.diffractive_layer(self.layer[1])
         F.propagate(z)
         I = F.get_intensity()
         x = 0.5*res + 0.5*I
@@ -92,7 +90,7 @@ class DON(nn.Module):
         F.set_source_amplitude(x)
         F.propagate(z)
         res = F.get_intensity()
-        F.diffractive_layer(self.layer3)
+        F.diffractive_layer(self.layer[2])
         F.propagate(z)
         I = F.get_intensity()
         x = 0.5*res + 0.5*I
