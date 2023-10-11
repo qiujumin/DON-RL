@@ -64,6 +64,15 @@ class MonochromaticField:
         return torch.real(self.E * torch.conj(self.E))
 
 
+    def shortcut(self):
+        self.E0 = self.E.clone()
+        self.propagate(z)
+        I = self.get_intensity()
+        self.E = torch.clone(self.E0)
+
+        return I
+
+
 class DON(nn.Module):
     def __init__(self, layer):
         super(DON, self).__init__()
@@ -73,7 +82,7 @@ class DON(nn.Module):
         F = MonochromaticField(wavelength, extent_x, extent_y, Nx, Ny)
         F.set_source_amplitude(x)
         F.propagate(z)
-        res = F.get_intensity()
+        res = F.shortcut()
         F.diffractive_layer(self.layer[0])
         F.propagate(z)
         I = F.get_intensity()
@@ -81,7 +90,7 @@ class DON(nn.Module):
 
         F.set_source_amplitude(x)
         F.propagate(z)
-        res = F.get_intensity()
+        res = F.shortcut()
         F.diffractive_layer(self.layer[1])
         F.propagate(z)
         I = F.get_intensity()
@@ -89,7 +98,7 @@ class DON(nn.Module):
 
         F.set_source_amplitude(x)
         F.propagate(z)
-        res = F.get_intensity()
+        res = F.shortcut()
         F.diffractive_layer(self.layer[2])
         F.propagate(z)
         I = F.get_intensity()
