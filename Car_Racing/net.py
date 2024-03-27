@@ -81,31 +81,14 @@ class DON(nn.Module):
 
     def forward(self, x):
         F = MonochromaticField(wavelength, extent_x, extent_y, Nx, Ny)
-        F.set_source_amplitude(x)
-        F.propagate(z)
-        res = F.shortcut()
-        F.diffractive_layer(self.layer[0])
-        F.propagate(z)
-        I = F.get_intensity()
-        x = 0.5*res + 0.5*I
-        x = self.ln(x)
-
-        F.set_source_amplitude(x)
-        F.propagate(z)
-        res = F.shortcut()
-        F.diffractive_layer(self.layer[1])
-        F.propagate(z)
-        I = F.get_intensity()
-        x = 0.5*res + 0.5*I
-        x = self.ln(x)
-
-        F.set_source_amplitude(x)
-        F.propagate(z)
-        res = F.shortcut()
-        F.diffractive_layer(self.layer[2])
-        F.propagate(z)
-        I = F.get_intensity()
-        x = 0.5*res + 0.5*I
-        x = self.ln(x)
+        for i in range(len(self.phase)):
+            F.set_source_amplitude(x)
+            F.propagate(z)
+            res = F.shortcut()
+            F.diffractive_layer(self.layer[i])
+            F.propagate(z)
+            I = F.get_intensity()
+            x = 0.5*res + 0.5*I
+            x = self.ln(x)
 
         return x
