@@ -77,6 +77,7 @@ class DON(nn.Module):
     def __init__(self, layer):
         super(DON, self).__init__()
         self.layer = layer
+        self.ln = nn.LayerNorm([Ny, Nx], elementwise_affine=False)
 
     def forward(self, x):
         F = MonochromaticField(wavelength, extent_x, extent_y, Nx, Ny)
@@ -87,6 +88,7 @@ class DON(nn.Module):
         F.propagate(z)
         I = F.get_intensity()
         x = 0.5*res + 0.5*I
+        x = self.ln(x)
 
         F.set_source_amplitude(x)
         F.propagate(z)
@@ -95,6 +97,7 @@ class DON(nn.Module):
         F.propagate(z)
         I = F.get_intensity()
         x = 0.5*res + 0.5*I
+        x = self.ln(x)
 
         F.set_source_amplitude(x)
         F.propagate(z)
@@ -103,5 +106,6 @@ class DON(nn.Module):
         F.propagate(z)
         I = F.get_intensity()
         x = 0.5*res + 0.5*I
+        x = self.ln(x)
 
         return x
