@@ -80,7 +80,7 @@ class DON(nn.Module):
 
     def forward(self, x):
         F = MonochromaticField(wavelength, extent_x, extent_y, Nx, Ny)
-        for i in range(len(self.phase)):
+        for i in range(len(self.layer)):
             F.set_source_amplitude(x)
             F.propagate(z)
             res = F.shortcut()
