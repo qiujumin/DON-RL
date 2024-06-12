@@ -25,3 +25,7 @@ Figure 1: Framework of our proposed method.
       primaryClass={cs.LG}
 }
 ``` 
+# Acknowledgement
+Our codebase builds on these repositories. We would like to thank the authors. 
+ 
+> https://github.com/rafael-fuente/diffractsim
